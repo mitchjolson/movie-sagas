@@ -10,7 +10,7 @@ class Details extends Component {
     // Renders the entire app on the DOM
     render() {
         return (
-            <h1>Details</h1>
+            <h1>{this.props.reduxStore.details.title}</h1>
         );
     }
 }

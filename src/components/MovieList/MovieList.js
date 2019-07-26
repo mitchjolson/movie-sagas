@@ -9,8 +9,8 @@ class MovieList extends Component {
         this.props.dispatch({ type: 'FETCH_MOVIES' });
     }
 
-    handleClick = () => {
-        console.log('Clicked a poster')
+    goToDetails = () => {
+        console.log('going to details', )
         this.props.history.push('/details')
     }
 
@@ -19,7 +19,7 @@ class MovieList extends Component {
         return (
             <div>
                 <h1>Movie List</h1>
-                {this.props.reduxStore.movies.map((item, i) => <MovieListItem key={i} item={item} handleClick={this.handleClick}/>)}
+                {this.props.reduxStore.movies.map((item, i) => <MovieListItem key={i} item={item} goToDetails={this.goToDetails}/>)}
             </div>
         );
     }
