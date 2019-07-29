@@ -3,6 +3,7 @@ import './App.css';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import MovieList from '../MovieList/MovieList';
 import Details from '../Details/Details';
+import Edit from '../Edit/Edit'
 
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
       <div className="App">
         <Route exact path='/' component={MovieList} />
         <Route path='/details' component={Details} />
+        <Route path='/edit' component={Edit} />
       </div>
       </Router>
     );
