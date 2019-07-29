@@ -16,6 +16,7 @@ import { takeEvery, put } from 'redux-saga/effects';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
+    yield takeEvery('FETCH_GENRES', fetchGenres);
 }
 
 function* fetchMovies() {
@@ -24,6 +25,16 @@ function* fetchMovies() {
         yield put ({type: 'SET_MOVIES', payload: response.data})
     } catch (error) {
         console.log('Error getting movies', error)
+    } 
+}
+
+function* fetchGenres(action) {
+    console.log('in fetchGenres, id is:', action.payload)
+    try {
+        const response = yield Axios.get(`/genres/${action.payload}`);
+        yield put ({type: 'SET_TAGS', payload: response.data})
+    } catch (error) {
+        console.log('Error getting genres', error)
     }
 }
 

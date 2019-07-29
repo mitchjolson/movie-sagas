@@ -7,10 +7,19 @@ import { connect } from 'react-redux';
 
 class Details extends Component {
 
+    componentDidMount() {
+        console.log('getting genre details for id:', this.props.reduxStore.details.id)
+        this.props.dispatch({ type: 'FETCH_GENRES', payload: this.props.reduxStore.details.id });
+    }
+
     // Renders the entire app on the DOM
     render() {
         return (
-            <h1>{this.props.reduxStore.details.title}</h1>
+            <div>
+                <h1>{this.props.reduxStore.details.title}</h1>
+                <img src={this.props.reduxStore.details.poster} alt={this.props.reduxStore.details.description} />
+                <h3>Genres:</h3>
+            </div>
         );
     }
 }
