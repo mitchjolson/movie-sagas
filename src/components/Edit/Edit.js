@@ -21,6 +21,7 @@ class Edit extends Component {
 
     handleSave = () => {
         this.props.dispatch({ type: 'EDIT_MOVIE', payload: this.state });
+        this.props.history.push('/Details')
     }
 
     handleChangeOne = (event) => {

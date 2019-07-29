@@ -18,14 +18,12 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
     yield takeEvery('FETCH_GENRES', fetchGenres);
     yield takeEvery('EDIT_MOVIE', editMovie);
+    yield takeEvery('FETCH_MOVIE', fetchSingleMovie)
 }
 
 function* editMovie(action){
-    console.log('in editMovie, action.payload is:', action.payload);
     try {
         yield Axios.put(`/movies/${action.payload.id}`, action.payload);
-        yield put({ type: 'FETCH_MOVIES'})
-        yield put({ type: 'SET_CLICKED', payload: action.payload.id })
     } catch (error) {
         console.log('Error modifying movie', error)
     }
@@ -41,12 +39,21 @@ function* fetchMovies() {
 }
 
 function* fetchGenres(action) {
-    console.log('in fetchGenres, id is:', action.payload)
     try {
         const response = yield Axios.get(`/genres/${action.payload}`);
         yield put ({type: 'SET_TAGS', payload: response.data})
     } catch (error) {
         console.log('Error getting genres', error)
+    }
+}
+
+function* fetchSingleMovie(action) {
+    console.log('getting a single movie, action.payload is:', action.payload)
+    try {
+        const response = yield Axios.get(`/movies/${action.payload}`);
+        yield put({ type: 'SET_CLICKED', payload: response.data })
+    } catch (error) {
+        console.log('Error getting specific movie info', error)
     }
 }
 

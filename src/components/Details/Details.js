@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 class Details extends Component {
 
     componentDidMount() {
-        console.log('getting genre details for id:', this.props.reduxStore.details.id)
         this.props.dispatch({ type: 'FETCH_GENRES', payload: this.props.reduxStore.details.id });
+        console.log('mounted, reduxStore is:', this.props.reduxStore.details)
     }
 
     handleGoHome = () => {

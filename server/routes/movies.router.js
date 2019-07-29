@@ -18,8 +18,20 @@ router.get('/', (req, res) => {
         })
 })
 
+router.get('/:id', (req, res) => {
+    console.log('getting a movie, req.params is', req.params)
+    const sqlText = `select * from movies where id = ${req.params.id};`;
+    pool.query(sqlText)
+        .then((response) => {
+            res.send(response.rows)
+        })
+        .catch((error) => {
+            console.log('error getting movies', error)
+            res.sendStatus(500)
+        })
+})
+
 router.put('/:id', (req, res) => {
-    console.log('modifying, req.body is', req.body)
     const sqlText = `update movies set (title, description) = ('${req.body.title}', '${req.body.description}') where movies.id = ${req.body.id};`;
     pool.query(sqlText)
         .then((response) => {
