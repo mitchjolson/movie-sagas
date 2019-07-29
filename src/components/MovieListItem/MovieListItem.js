@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class MovieList extends Component {
 
-    handleClick = (event) => {
+    handleClick = () => {
         console.log(this.props.item.id);
         this.props.dispatch({type:'SET_CLICKED', payload: {id: this.props.item.id, title: this.props.item.title, poster: this.props.item.poster, description: this.props.item.description}})
         this.props.goToDetails();

@@ -17,6 +17,18 @@ import { takeEvery, put } from 'redux-saga/effects';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
     yield takeEvery('FETCH_GENRES', fetchGenres);
+    yield takeEvery('EDIT_MOVIE', editMovie);
+}
+
+function* editMovie(action){
+    console.log('in editMovie, action.payload is:', action.payload);
+    try {
+        yield Axios.put(`/movies/${action.payload.id}`, action.payload);
+        yield put({ type: 'FETCH_MOVIES'})
+        yield put({ type: 'SET_CLICKED', payload: action.payload.id })
+    } catch (error) {
+        console.log('Error modifying movie', error)
+    }
 }
 
 function* fetchMovies() {

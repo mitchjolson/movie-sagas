@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 class Edit extends Component {
 
     state = {
+        id: this.props.reduxStore.details.id,
         title: this.props.reduxStore.details.title,
         description: this.props.reduxStore.details.description,
     }
@@ -19,7 +20,7 @@ class Edit extends Component {
     }
 
     handleSave = () => {
-        
+        this.props.dispatch({ type: 'EDIT_MOVIE', payload: this.state });
     }
 
     handleChangeOne = (event) => {
