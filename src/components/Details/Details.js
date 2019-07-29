@@ -18,7 +18,10 @@ class Details extends Component {
             <div>
                 <h1>{this.props.reduxStore.details.title}</h1>
                 <img src={this.props.reduxStore.details.poster} alt={this.props.reduxStore.details.description} />
-                <h3>Genres:</h3>
+                <ul>
+                    <h3>Genres:</h3>
+                    {this.props.reduxStore.genres.map((item, i) => <li key={i}>{item.name}</li> )}
+                </ul>
             </div>
         );
     }
