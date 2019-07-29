@@ -27,8 +27,8 @@ class Details extends Component {
                     <h3>Genres:</h3>
                     {this.props.reduxStore.genres.map((item, i) => <li key={i}>{item.name}</li> )}
                 </ul>
-                <button onClick={this.handleGoHome}>Back to List</button>
                 <button onClick={this.handleEdit}>Edit</button>
+                <button onClick={this.handleGoHome}>Back to List</button>
             </div>
         );
     }
